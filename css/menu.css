@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #b6b5b5;
+}
+
+h1, .menu a {
+    font-size: 24px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.menu a {
+    margin-bottom: 10px; /* Adjust as needed */
+
+}
