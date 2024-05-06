@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Title</title>
+    <title>Map with Markers</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
 </head>
 <body>
-    <H1>Pelin nimi</H1>
+    <div id="map" style="height: 800px;"></div>
 
-    <div id="map">
-        <!-- Tilapäinen kuva -->
-        <img src="img/europe-map-countries-capital-high-resolution.jpg" height="2284" width="2400" alt="Here is a map"/>
-    </div>
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
 
+    <script>
+        // Initialize the map
+        let map = L.map('map').setView([51.505, -0.09], 5);
 
+        // Add the base tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
+        // Array of marker coordinates
+        let markers = [
+            [59.9133301, 10.7389701],
+            [49.6112768, 6.129799],
+            [51.49, -0.08]
+        ];
+
+        // Add markers to the map
+        markers.forEach(function(markerLocation) {
+            L.marker(markerLocation).addTo(map);
+        });
+    </script>
 </body>
 </html>
