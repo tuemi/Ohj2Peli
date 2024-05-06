@@ -33,7 +33,8 @@
 
         // Add markers to the map
         markers.forEach(function(markerLocation) {
-            L.marker(markerLocation).addTo(map);
+            let marker = L.marker(markerLocation).addTo(map);
+            marker.bindPopup("Coordinates: " + markerLocation).openPopup();
         });
     </script>
 </body>
