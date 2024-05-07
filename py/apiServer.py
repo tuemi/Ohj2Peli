@@ -1,5 +1,6 @@
-print("Hello World")
+#Testaan api:n käyttöä
 
+from flask import Flask, request
 import mysql.connector
 import random
 
@@ -16,7 +17,7 @@ mydb_connect = mysql.connector.connect(
          )
 
 def haetaan_maat(maata):
-    sql = f'select name from country where continent = "EU";'
+    sql = f'select name from country where continent = "EU" ;'
     cursor = mydb_connect.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -28,5 +29,16 @@ def haetaan_maat(maata):
             result.remove(random.choice(result))
     return valitut
 
-print(haetaan_maat(10))
 
+app = Flask(__name__)
+@app.route('/maat')
+def maat():
+
+    vastaus = {
+        "Täässä on maat": haetaan_maat(10)
+    }
+
+    return vastaus
+
+if __name__ == '__main__':
+    app.run(use_reloader=True, host='127.0.0.1', port=3000)
