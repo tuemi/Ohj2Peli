@@ -1,6 +1,5 @@
 #Testaan api:n käyttöä
 import mysql.connector
-from geopy.distance import geodesic as GD
 import random
 from flask import Flask, request
 
@@ -16,7 +15,6 @@ mydb_connect = mysql.connector.connect(
          password=psw,
          autocommit=True
          )
-# Hakee tietokannasta tiety maiden määrä
 
 valitut = []
 
@@ -31,9 +29,6 @@ def haetaan_maat(maata):
         rnd = random.choice(result)
         if rnd not in valitut:
             valitut.append(rnd)
-        #elif random.choice(result) in valitut:
-            #valitut.remove(random.choice(result))
-       # print(rnd)
     maat=[]
     for i in valitut:
         maat.append(i[0])
@@ -67,17 +62,9 @@ sijainti_tuple = random.choice(maata)
 sijainti = list(sijainti_tuple)
 palasia = 0
 
-
-
-
-
-
-
 app = Flask(__name__)
 @app.route('/maat')
 def maat():
-
-
     vastaus = {
         "Täässä on maat": listmaat
     }
@@ -86,7 +73,6 @@ def maat():
 @app.route('/maat/kaupungit')
 def kaupungit():
     kaupungit = haetaan_kaupungit()
-
     vastaus = {
         "Täässä on kaupungit": kaupungit
     }
@@ -95,7 +81,6 @@ def kaupungit():
 @app.route('/maat/kaupungit/koordinaatit')
 def koordinaatit():
     koordinaatit = haetaan_koordinaatit()
-
     vastaus = {
         "koordinaatit": koordinaatit
     }
