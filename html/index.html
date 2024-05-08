@@ -26,6 +26,25 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+
+
+        const apiUrl = 'http://127.0.0.1:3000/test';
+
+        fetch(apiUrl, { mode: 'no-cors' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+            })
+            .then(data => {
+            console.log(data);
+            })
+            .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            });
+
+
         // Array of marker coordinates
         let markers = [
             [59.9133301, 10.7389701],
