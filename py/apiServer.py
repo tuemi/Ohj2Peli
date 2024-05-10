@@ -2,6 +2,11 @@
 import mysql.connector
 import random
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
+
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Oman database kansion nimi ja salasana
 name = 'flight_game'
@@ -64,6 +69,7 @@ palasia = 0
 
 app = Flask(__name__)
 @app.route('/maat')
+@cross_origin()
 def maat():
     vastaus = {
         "Täässä on maat": listmaat
@@ -71,6 +77,7 @@ def maat():
     return vastaus
 
 @app.route('/maat/kaupungit')
+@cross_origin()
 def kaupungit():
     kaupungit = haetaan_kaupungit()
     vastaus = {
@@ -79,6 +86,7 @@ def kaupungit():
     return vastaus
 
 @app.route('/maat/kaupungit/koordinaatit')
+@cross_origin()
 def koordinaatit():
     koordinaatit = haetaan_koordinaatit()
     vastaus = {
@@ -86,10 +94,18 @@ def koordinaatit():
     }
     return vastaus
 
+
+
 @app.route('/test')
+@cross_origin()
 def test():
     vastaus = {"test": "abvc"}
     return vastaus
+
+#@app.route('/test')
+#def test():
+#    vastaus = {"test": "abvc"}
+#    return vastaus
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)
