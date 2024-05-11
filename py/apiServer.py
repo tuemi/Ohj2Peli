@@ -43,15 +43,17 @@ def haetaan_maat(maata):
 def haetaan_kaupungit():
     kaupungit = []
     for i in valitut:
-        kaupungit.append(i[1])
+        kaupungit.append(i[1:]) # kaikki loppukentät
     return kaupungit
 
+"""
 def haetaan_koordinaatit():
     koordinaatit = []
     for i in valitut:
-        koordinaatit.append(i[2:])
+        koordinaatit.append(i[2:]) ## vain kaksi viimeistä kenttää
         print(koordinaatit)
     return koordinaatit
+"""
 
 # Alusta oletusarvot
 listmaat = haetaan_maat(10)
@@ -80,10 +82,11 @@ def maat():
 def kaupungit():
     kaupungit = haetaan_kaupungit()
     vastaus = {
-        "Täässä on kaupungit": kaupungit
+        "kaupungit": kaupungit
     }
     return vastaus
 
+"""
 @app.route('/maat/kaupungit/koordinaatit')
 @cross_origin()
 def koordinaatit():
@@ -92,8 +95,6 @@ def koordinaatit():
         "koordinaatit": koordinaatit
     }
     return vastaus
-
-
 
 @app.route('/test')
 @cross_origin()
@@ -105,6 +106,7 @@ def test():
 #def test():
 #    vastaus = {"test": "abvc"}
 #    return vastaus
+"""
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)
