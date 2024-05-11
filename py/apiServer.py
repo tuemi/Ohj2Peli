@@ -53,7 +53,6 @@ def haetaan_koordinaatit():
         print(koordinaatit)
     return koordinaatit
 
-
 # Alusta oletusarvot
 listmaat = haetaan_maat(10)
 rahaa = 1500
