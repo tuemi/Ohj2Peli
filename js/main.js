@@ -1,21 +1,13 @@
 
-// Initialize the map
-
-
-async function getapi() {
+async function getcords() {
     try {
-        // Fetch data using the Fetch API
         let response = await fetch('http://127.0.0.1:3000/maat/kaupungit/koordinaatit');
 
-        // Check if response is ok
         if (!response.ok) {
             throw new Error('Failed to fetch joke');
         }
         let jsonData = await response.json();
         const naatit = jsonData.koordinaatit
-        //naatit.forEach(function (sijainti){console.log((sijainti))})
-        //console.log(naatit)
-        //console.log(jsonData.koordinaatit);
         return(naatit)
 
     } catch (error) {
@@ -23,10 +15,37 @@ async function getapi() {
     }
 }
 
+async function getcities() {
+    try {
+        let response = await fetch('http://127.0.0.1:3000/maat/kaupungit');
 
-//document.getElementById("apiout").innerText = getapi()
+        if (!response.ok) {
+            throw new Error('Failed to fetch joke');
+        }
+        let jsonData = await response.json();
+        const cities = jsonData.kaupungit
+        return(cities)
 
-let map = L.map('map').setView([51.505, -0.09], 5);
+    } catch (error) {
+        console.error(error);
+    }
+}
+function onClick(e) {
+    var popup = e.target.getPopup();
+    var content = popup.getContent();
+    console.log(content);
+    //alert("Lennatko " +content);
+    if (confirm("Lento maksaa" + ", lennetaanko kaupinkiin " + content) == true) {
+        console.log("Lennetaan")
+    } else {
+        console.log("Ei lenneta")
+    }
+}
+
+    //console.log(this._popup);
+    //alert(this.getLatLng());
+
+let map = L.map('map').setView([60.1674881,24.9427473], 5);
 
         // Add the base tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -34,20 +53,31 @@ let map = L.map('map').setView([51.505, -0.09], 5);
         }).addTo(map);
 
 
-    /* Array of marker coordinates
-        let markers = [
-            [59.9133301, 10.7389701],
-            [39.6112768, 6.129799],
-            [51.49, -0.08]
-        ];
-       */
-        console.log(getapi())
-        let markers = [
+        let cities = getcities() //haetaan kaupunkit
+            .then(function (cities) {
+                cities.forEach(
+                    function (city){
+                        var coords = city.slice(1) //leikataan ensimmäinen arvo(kaupungin nimi) pois
+                        //console.log(coords)
+                        let marker = L.marker(coords).addTo(map).on('dblclick', onClick);
+                        marker.bindPopup(city[0]).openPopup();
 
-        ];
+                    })
+            })
 
-        // Add markers to the map
-        markers.forEach(function(markerLocation) {
-            let marker = L.marker(markerLocation).addTo(map);
-            marker.bindPopup("Coordinates: " + markerLocation).openPopup();
-        });
+
+/* Toimii
+        let naatit = getcords()
+            .then(function (result) {
+               result.forEach(
+                   function (markerLocation){
+                    let marker = L.marker(markerLocation).addTo(map);
+                    marker.bindPopup("Coordinates: " + markerLocation).openPopup();
+                    }
+               )
+            })
+*/
+
+function fly() {
+       console.log("Painallus")
+        }
