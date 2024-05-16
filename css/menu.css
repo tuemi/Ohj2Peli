@@ -1,6 +1,8 @@
 body {
     margin: 0;
     font-family: "Roboto", sans-serif;
+    display: flex;
+    background: linear-gradient(135deg, #ebb074 0%, #e5b3ac 100%);
 }
 
 .screen{

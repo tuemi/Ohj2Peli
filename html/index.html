@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Map with Markers</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- Include Leaflet CSS -->
+    <title>Save the World Game</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
+    <link rel="stylesheet" href="/../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <body>
 
-    <h1>Map of salvation</h1>
-    <div id="map" style="height: 600px;"></div>
+    <h1>Save the World Game</h1>
+    <div id="map"></div>
 
-    <!-- Include Leaflet JavaScript -->
+    <div id="stats">
+        <p><strong>Money:</strong> <span id="money"></span>€</p>
+        <p><strong>Countries Visited:</strong> <span id="countries"></span></p>
+        <p><strong>Map Pieces Found:</strong> <span id="mapPieces"></span>/5</p>
+    </div>
+
+    <div id="controls">
+        <input type="button" value="Fly to a new country" id="flyButton">
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
-
-    <div id="apiout"></div>
-    <script src="../js/main.js"></script>
-
-    <!--poista nappi kun toimii klikkaamalla - OK -->
-    <div id="fly">
-        <input type="button" value="Test post flight to location" onclick="fly();">
-    </div>
-
-    <h2>Instructions
-        <p id="instructions">
-            One click tells you the name of the country's capital, a double click flies to the city of your choice. The red circle indicates your location
-        </p>
-    </h2>
-
-
+    <script src="/../js/map.js"></script>
 </body>
 </html>

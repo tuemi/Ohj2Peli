@@ -2,11 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scoreboard</title>
+    <link rel="stylesheet" href="../css/scoreboard.css">
 </head>
 <body>
-<!-- Tässä on scoreboard jos haluamme sellaisen. -->
-    <h1>Scoreboard</h1>
-    <p>Tähän olisi tullut scoreboard.</p>
+    <div class="scoreboard">
+        <h1>Scoreboard</h1>
+        <div class="score-item">
+            <span class="label">Money Left:</span>
+            <span class="value" id="money">0 €</span>
+        </div>
+        <div class="score-item">
+            <span class="label">Map Pieces:</span>
+            <span class="value" id="map-pieces">0</span>
+        </div>
+        <div class="score-item">
+            <span class="label">Countries Visited:</span>
+            <span class="value" id="countries">0</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
