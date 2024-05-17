@@ -1,7 +1,5 @@
 //Lähetetään dataa pythoniin
 // POST
-
-
 function sendlocation(e)   {
     fetch('http://127.0.0.1:3000/location', {
 
